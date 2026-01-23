@@ -23,6 +23,19 @@
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  
+  width: 100%;
+  max-width: 300px;
 }
+.card-desc {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
+ }
+
 
