@@ -1,9 +1,16 @@
-import React from 'react'
-
 function Cards() {
   return (
-    <div>Cards</div>
-  )
+    <>
+      <Header />
+
+      <main>
+        <section className="section">
+          <h1>Cards</h1>
+          <CardGrid />
+        </section>
+      </main>
+    </>
+  );
 }
 
-export default Cards
+export default Cards;

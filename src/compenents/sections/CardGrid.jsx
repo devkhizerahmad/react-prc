@@ -1,9 +1,15 @@
-import React from 'react'
-import './CardGrid.css'
+import Card from '../ui/Card';
+import './CardGrid.css';
+
 function CardGrid() {
   return (
-    <div>CardGrid</div>
-  )
+    <div className="card-grid">
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+    </div>
+  );
 }
 
-export default CardGrid
+export default CardGrid;
