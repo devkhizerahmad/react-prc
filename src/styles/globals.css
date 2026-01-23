@@ -1,0 +1,6 @@
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: #F9FAFB;
+  color: var(--text-main);
+}
