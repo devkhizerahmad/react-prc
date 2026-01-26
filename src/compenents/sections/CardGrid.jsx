@@ -1,5 +1,6 @@
 import Card from '../ui/Card';
 import './CardGrid.css';
+import '../../styles/sections.css'
 
 function CardGrid() {
   return (

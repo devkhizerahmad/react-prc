@@ -1,29 +1,83 @@
 /* src/styles/sections.css */
 
-/* .section {
-  padding: var(--space-lg) var(--space-sm); 
-  max-width: 1200px; 
-  margin: 0 auto;    
-} 
-*/
-
-/* Mobile = default */
-.section {
-  padding: var(--space-lg) var(--space-sm);
-   max-width: 1200px; /* desktop width control */
-  margin: 0 auto;    /* center align sections */
+/* Base spacing variables (globals.css) */
+:root {
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
 }
 
-/* Tablet (768px+) */
+/* Section Wrapper */
+.section {
+  padding: var(--space-lg) var(--space-sm);  /* Mobile first */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Heading & paragraph spacing */
+.section h1 {
+  margin-bottom: var(--space-md); /* Mobile */
+}
+
+.section p {
+  margin-bottom: var(--space-md); /* Mobile */
+}
+
+/* Tablet */
 @media (min-width: 768px) {
   .section {
-    padding: var(--space-xl) var(--space-md); /* vertical 32px, horizontal 16px */
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .section h1 {
+    margin-bottom: var(--space-lg);
+  }
+
+  .section p {
+    margin-bottom: var(--space-lg);
   }
 }
 
-/* Desktop (1024px+) */
+/* Desktop */
 @media (min-width: 1024px) {
   .section {
-    padding: var(--space-xxl) var(--space-lg); /* vertical 48px, horizontal 24px */
+    padding: var(--space-xxl) var(--space-lg);
+  }
+
+  .section h1 {
+    margin-bottom: var(--space-xl);
+  }
+
+  .section p {
+    margin-bottom: var(--space-xl);
+  }
+}
+
+/* Card Grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile */
+  gap: var(--space-lg);       /* Mobile */
+
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tablet Grid */
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+}
+
+/* Desktop Grid */
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xxl);
   }
 }
