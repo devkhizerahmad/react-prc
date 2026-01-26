@@ -1,5 +1,11 @@
 .header { 
   background-color: #333;
 }
-.header-inner { }
-.nav { }
+.header-inner {
+  background-color: #fff;
+  padding: 10px 0;
+ }
+.nav {
+  background-color: antiquewhite;
+  max-width: fit-content;
+ }
