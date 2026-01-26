@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  padding: 10px; 
+  padding: 12px; 
   border-radius: 12px;
   background: #fff;
   border: 1px solid #eee;
@@ -37,7 +37,7 @@
   color: #666;
 }
 .card-footer {
-  margin-top: var(--space-lg);
+  margin-top: var(--space-md); /* 16px */
 }
 
 .card-btn {
