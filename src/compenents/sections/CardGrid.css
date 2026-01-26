@@ -1,24 +1,21 @@
-.card-grid { /* photo grid container */
+/* CardGrid.css */
+
+.card-grid {
   display: grid;
-  grid-template-columns: 1fr;   /* Mobile: 1 column */
+  grid-template-columns: 1fr;
   gap: 16px;
-  max-width: 1200px;
-  margin: 0 auto;
   border: 1px solid #f18509;
-  padding: 5px; /* Add padding inside the grid container */
-  box-shadow: 0 4px 8px rgba(4, 206, 241, 0.1);
-  border-radius: 8px; /* Add border radius to the grid container */
 }
-@media (min-width: 768px) { /* Tablet */ 
+
+@media (min-width: 768px) {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
-    border: 1px solid #1baab4;
+    gap: 20px;
   }
 }
-@media (min-width: 1024px) { /* Desktop */ 
+
+@media (min-width: 1024px) {
   .card-grid {
     grid-template-columns: repeat(3, 1fr);
-    border: 1px solid #37f37f;
-
   }
 }
