@@ -1,3 +1,7 @@
+import Header from "../compenents/layout/Header";
+import CardGrid from "../compenents/sections/CardGrid";
+
+
 function Cards() {
   return (
     <>

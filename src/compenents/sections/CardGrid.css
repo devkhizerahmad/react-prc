@@ -4,6 +4,10 @@
   gap: 16px;
   max-width: 1200px;
   margin: 0 auto;
+  border: 1px solid #f18509;
+  padding: 16px; /* Add padding inside the grid container */
+  box-shadow: 0 4px 8px rgba(4, 206, 241, 0.1);
+  border-radius: 8px; /* Add border radius to the grid container */
 }
 @media (min-width: 768px) {
   .card-grid {
