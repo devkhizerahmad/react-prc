@@ -1,7 +1,7 @@
 .card-grid { /* photo grid container */
   display: grid;
   grid-template-columns: 1fr;   /* Mobile: 1 column */
-  gap: var(--space-lg);
+  gap: 16px;
   max-width: 1200px;
   margin: 0 auto;
   border: 1px solid #f18509;

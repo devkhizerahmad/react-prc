@@ -12,7 +12,7 @@
 
 /* Section Wrapper */
 .section {
-  padding: var(--space-lg) var(--space-sm);  /* Mobile first */
+  padding: 24px 16px; /* Mobile first */
   max-width: 1200px;
   margin: 0 auto;
 }
