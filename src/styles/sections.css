@@ -1,0 +1,29 @@
+/* src/styles/sections.css */
+
+/* .section {
+  padding: var(--space-lg) var(--space-sm); 
+  max-width: 1200px; 
+  margin: 0 auto;    
+} 
+*/
+
+/* Mobile = default */
+.section {
+  padding: var(--space-lg) var(--space-sm);
+   max-width: 1200px; /* desktop width control */
+  margin: 0 auto;    /* center align sections */
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  .section {
+    padding: var(--space-xl) var(--space-md); /* vertical 32px, horizontal 16px */
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .section {
+    padding: var(--space-xxl) var(--space-lg); /* vertical 48px, horizontal 24px */
+  }
+}

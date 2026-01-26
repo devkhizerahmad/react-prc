@@ -14,7 +14,6 @@ function CardGrid() {
       <Card />
       <Card />
       <Card />
-      <Card />
     </div>
   );
 }
