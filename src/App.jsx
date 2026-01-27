@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Cards from "./pages/Cards";
 import Header from "./compenents/layout/Header";
+import Footer from "./compenents/layout/Footer";
+
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,6 +45,7 @@ function App() {
           />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }

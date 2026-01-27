@@ -2,7 +2,11 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div>Footer</div>
+    <footer className="footer">
+      <div className='container footer-inner'>
+
+      </div>
+    </footer>
   )
 }
 
