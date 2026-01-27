@@ -9,19 +9,26 @@
 box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   /* background: #c5f0c5; */
   /* border-color: #99cc99; */
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 
 }
-/* .card:hover{
+.card:hover{
   border: 1px solid #99cc99;
   color: #99cc99;
+  background: #f2f2f2;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
+/* .card:hover {
+  transform: rotateY(180deg);
+  transition: transform 0.5s ease-in-out;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   background: #f2f2f2;
+  border: 1px solid #99cc99;
+  color: #99cc99;
 } */
-.card:hover {
-  transform: rotateY(180deg);
-  backface-visibility: hidden;
-  transition: transform 0.5s ease-in-out;
-}
 .card-image {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -34,6 +41,10 @@ box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8p
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
+}
+.card:hover .card-image img {
+  transform: scale(1.05);
 }
 .card-body {
   flex-grow: 1; /* Sabse important line */
@@ -75,7 +86,24 @@ box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8p
   color: #fff;
   font-size: 14px;
   cursor: pointer;
+    transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+
+  
 }
+.card-btn:hover {
+  background: #5ab8ee;
+  transform: translateY(-1px);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  border: 1px solid #93c5fd;
+
+}
+.card-btn:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+
 @media (min-width: 768px) {
   .card-image {
     aspect-ratio: 16 / 9;
