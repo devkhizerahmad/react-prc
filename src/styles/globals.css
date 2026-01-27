@@ -28,7 +28,8 @@ body {
 .main-content {
   flex: 1;
   transition: padding-top 0.3s ease;
-  padding-top: 0;
+  padding-top: var(--header-height);
+
 }
 
 .app.menu-open .main-content {
