@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Inter, system-ui, sans-serif;
-  background: #F9FAFB;
+  background: #f9fafb;
   color: var(--text-main);
 }
 
@@ -13,4 +13,36 @@ body {
   --space-lg: 24px;
   --space-xl: 32px;
   --space-xxl: 48px;
+  --header-height: 64px;
+  --mobile-menu-height: 280px;
+}
+
+/* App layout styles */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.main-content {
+  flex: 1;
+  transition: padding-top 0.3s ease;
+  padding-top: 0;
+}
+
+.app.menu-open .main-content {
+  padding-top: var(--mobile-menu-height);
+}
+
+/* Ensure proper layout */
+* {
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .app.menu-open .main-content {
+    padding-top: 0;
+  }
 }
