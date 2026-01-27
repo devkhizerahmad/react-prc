@@ -1,4 +1,7 @@
 .footer {
   background: #0f172a;   /* dark navy */
-  color: #cbd5f5;
+  color: #cbd5f5;   /* lightish blue */
+  padding: 2rem;
+  font-size: 0.875rem;   /* 14px */
+  text-align: center;
 }
