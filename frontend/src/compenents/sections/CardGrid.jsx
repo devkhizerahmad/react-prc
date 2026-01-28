@@ -9,7 +9,7 @@ function CardGrid() {
       <Card title="Card 2" description="This is card 2" />
       <Card title="Card 3" description="This is card 3" />
       <Card title="Card 4" description="This is card 4" />
-      <Card title="Card 5" />
+      <Card title="Card 5" description="This is card 5" />
       <Card title="Card 6" />
       <Card title="Card 7" />
       <Card title="Card 8" />
