@@ -6,9 +6,9 @@ function CardGrid() {
   return (
     <div className="card-grid">
       <Card title="Card 1" description="This is card 1" />
-      <Card title="Card 2" />
-      <Card title="Card 3" />
-      <Card title="Card 4" />
+      <Card title="Card 2" description="This is card 2" />
+      <Card title="Card 3" description="This is card 3" />
+      <Card title="Card 4" description="This is card 4" />
       <Card title="Card 5" />
       <Card title="Card 6" />
       <Card title="Card 7" />
