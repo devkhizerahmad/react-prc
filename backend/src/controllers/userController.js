@@ -54,7 +54,7 @@ export const login = async (req, res) => {
     const result = await UserService.authenticateUser(email, password);
     return sendResponse(res, 200, true, "Login successful", result);
   } catch (error) {
-    console.error("Controlle - Login error:", error.message);
+    console.error("Controller - Login error:", error.message);
 
     if (error.message === "Invalid credentials") {
       return sendResponse(res, 401, false, error.message);
