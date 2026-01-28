@@ -9,9 +9,9 @@ function CardGrid() {
       <Card title="Card 2" />
       <Card title="Card 3" />
       <Card title="Card 4" />
-      <Card />
-      <Card />
-      <Card />
+      <Card title="Card 5" />
+      <Card title="Card 6" />
+      <Card title="Card 7" />
       <Card />
       <Card />
       <Card/>
