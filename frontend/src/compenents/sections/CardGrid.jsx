@@ -12,9 +12,9 @@ function CardGrid() {
       <Card title="Card 5" />
       <Card title="Card 6" />
       <Card title="Card 7" />
-      <Card />
-      <Card />
-      <Card/>
+      <Card title="Card 8" />
+      <Card title="Card 9" />
+      <Card title="Card 10" />
       <Card />
       <Card />
     </div>
