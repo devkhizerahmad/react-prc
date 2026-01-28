@@ -15,8 +15,8 @@ function CardGrid() {
       <Card title="Card 8" />
       <Card title="Card 9" />
       <Card title="Card 10" />
-      <Card />
-      <Card />
+      <Card title="Card 11" />
+      <Card title="Card 12" />
     </div>
   );
 }
