@@ -4,7 +4,7 @@ import '../../styles/sections.css'
 
 function CardGrid() {
   return (
-    <div className="container card-grid">
+    <div className="card-grid">
       <Card />
       <Card />
       <Card />
