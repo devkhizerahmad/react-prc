@@ -13,7 +13,7 @@ function Signup() {
   const [signup, { isLoading, isError, error }] = useSignupMutation();
 
   const handleSubmit = async (e) => {
-    e.();
+    e.preventDefault();
 
     try {
       const res = await signup({ name, email, password }).unwrap();
