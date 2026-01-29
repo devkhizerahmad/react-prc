@@ -47,6 +47,25 @@ const userSchemas = {
       "any.required": "Email is required",
     }),
   }),
+
+  updateProfile: Joi.object({
+    bio: Joi.string().max(500).optional().messages({
+      "string.max": "Bio must be less than 500 characters",
+    }),
+    avatar: Joi.string().uri().optional().messages({
+      "string.uri": "Please provide a valid avatar URL",
+    }),
+    dateOfBirth: Joi.date().max("now").optional().messages({
+      "date.max": "Date of birth cannot be in the future",
+    }),
+  }),
+
+  getPublicProfile: Joi.object({
+    id: Joi.string().uuid().required().messages({
+      "string.uuid": "Invalid user ID format",
+      "any.required": "User ID is required",
+    }),
+  }),
 };
 
 // Generic validation middleware
@@ -69,3 +88,5 @@ export const validateSignup = validate(userSchemas.signup);
 export const validateLogin = validate(userSchemas.login);
 export const validateGetUserById = validate(userSchemas.getUserById);
 export const validateGetUserByEmail = validate(userSchemas.getUserByEmail);
+export const validateUpdateProfile = validate(userSchemas.updateProfile);
+export const validateGetPublicProfile = validate(userSchemas.getPublicProfile);
