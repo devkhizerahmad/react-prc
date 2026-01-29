@@ -6,6 +6,9 @@ import Home from "./pages/Home";
 import Cards from "./pages/Cards";
 import Header from "./compenents/layout/Header";
 import Footer from "./compenents/layout/Footer";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+
 
 
 function App() {
@@ -18,6 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/card" element={<Cards />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
           <Route
             path="*"
             element={

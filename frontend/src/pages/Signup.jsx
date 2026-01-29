@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useSignupMutation } from "../features/auth/authApi";
-import { useAppDispatch } from "../app/hooks";
-import { setCredentials } from "../features/auth/authSelectors";
+import { useSignupMutation } from "../../store/api/apiSlice.js";
+import { useDispatch } from "react-redux";
 
+import "../styles/auth.css";
 function Signup() {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,23 +13,18 @@ function Signup() {
   const [signup, { isLoading, isError, error }] = useSignupMutation();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.();
 
     try {
       const res = await signup({ name, email, password }).unwrap();
+      console.log("Signup Success:", res);
+      // Reset form
+      setName("");
+      setEmail("");
+      setPassword("");
 
-      // signup ke baad login nahi ho raha (token nahi aata)
-      // is liye sirf user store kar rahe hain (optional)
-      if (res?.data?.user) {
-        dispatch(
-          setCredentials({
-            user: res.data.user,
-            token: null,
-          })
-        );
-      }
-
-      console.log("Signup Success:", res.data);
+      // Optionally redirect to login page after successful signup
+      // You can use navigate hook from react-router-dom here
     } catch (err) {
       console.error("Signup Error:", err);
     }
@@ -87,7 +82,7 @@ function Signup() {
 
         <div className="auth-footer">
           <p>
-            Already have an account? <span>Login</span>
+            Already have an account? <a href="/login">Login</a>
           </p>
         </div>
       </div>

@@ -33,4 +33,5 @@ export const authApi = createApi({
     }),
   }),
 })
-export const {useLoginMutation, useLogoutMutation, useGetProfileQuery} = authApi;
+export const {useLoginMutation, useLogoutMutation, useGetProfileQuery, useSignupMutation
+} = authApi;

@@ -23,11 +23,11 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
           <Link to="/card" onClick={closeMenu}>
             Cards
           </Link>
-          <Link to="/about" onClick={closeMenu}>
-            About
+          <Link to="/login" onClick={closeMenu}>
+            Login
           </Link>
-          <Link to="/contact" onClick={closeMenu}>
-            Contact
+          <Link to="/signup" onClick={closeMenu}>
+            Signup
           </Link>
           <Link to="/blog" onClick={closeMenu}>
             Blog

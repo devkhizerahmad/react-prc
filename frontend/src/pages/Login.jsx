@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useLoginMutation } from "../features/auth/authApi";
-import { useAppDispatch } from "../app/hooks";
-import { setCredentials } from "../features/auth/authSelectors";
-
+import { useLoginMutation } from "../../store/api/apiSlice.js";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import "../styles/auth.css";
 function Login() {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,8 +17,9 @@ function Login() {
 
     try {
       const res = await login({ email, password }).unwrap();
-      dispatch(setCredentials(res.data));
-      console.log("Login Success:", res.data);
+      console.log("Login Success:", res);
+      // Navigate to home or dashboard after successful login
+      navigate("/");
     } catch (err) {
       console.error("Login Error:", err);
     }
@@ -65,7 +67,7 @@ function Login() {
 
         <div className="auth-footer">
           <p>
-            Don’t have an account? <span>Signup</span>
+            Don’t have an account? <a href="/signup">Signup</a>
           </p>
         </div>
       </div>
