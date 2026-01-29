@@ -14,7 +14,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting signup form:",name, email, password);
+    console.log("Submitting signup form:",nameemail, password);
 
     try {
       const res = await signup({ name, email, password }).unwrap();
