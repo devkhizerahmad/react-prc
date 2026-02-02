@@ -7,54 +7,34 @@ export { prisma };
 // Sample users are now stored in the database
 
 // Authentication middleware
-export const authenticateToken = async (req, res, next) => {
-  try {
-    const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1]; // Bearer TOKEN
+export const authenticateToken = (req, res, next) => {
+  console.log("🛡️ AUTH MIDDLEWARE: Starting token authentication");
 
-    if (!token) {
-      return res.status(401).json({
-        success: false,
-        message: "Access token required",
-      });
-    }
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1]; // Bearer TOKEN
 
-    const decoded = verifyToken(token);
-
-    // Fetch user from database
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.userId },
-      select: { id: true, email: true, name: true },
+  if (!token) {
+    console.log("❌ No token provided in authorization header");
+    return res.status(401).json({
+      success: false,
+      message: "Access token required",
     });
+  }
 
-    if (!user) {
-      return res.status(401).json({
-        success: false,
-        message: "Invalid token - user not found",
-      });
-    }
+  console.log("🎫 Token found, attempting verification");
 
-    req.user = { id: user.id, email: user.email, name: user.name };
+  try {
+    const decoded = verifyToken(token);
+    console.log("✅ Token verified successfully");
+    console.log("👤 Decoded user ID:", decoded.userId);
+
+    req.user = decoded;
     next();
   } catch (error) {
-    if (error.name === "JsonWebTokenError") {
-      return res.status(403).json({
-        success: false,
-        message: "Invalid token",
-      });
-    }
-
-    if (error.name === "TokenExpiredError") {
-      return res.status(403).json({
-        success: false,
-        message: "Token expired",
-      });
-    }
-
-    return res.status(500).json({
+    console.log("❌ Token verification failed:", error.message);
+    return res.status(403).json({
       success: false,
-      message: "Authentication failed",
-      error: process.env.NODE_ENV === "development" ? error.message : undefined,
+      message: "Invalid or expired token",
     });
   }
 };

@@ -71,14 +71,24 @@ const userSchemas = {
 // Generic validation middleware
 export const validate = (schema) => {
   return (req, res, next) => {
+    console.log("📋 VALIDATION MIDDLEWARE: Starting validation");
+    console.log("📥 Request body for validation:", req.body);
+
     const { error } = schema.validate(req.body);
+
     if (error) {
+      console.log(
+        "❌ Validation failed with errors:",
+        error.details.map((d) => d.message)
+      );
       return res.status(400).json({
         success: false,
         message: "Validation error",
         errors: error.details.map((detail) => detail.message),
       });
     }
+
+    console.log("✅ Validation passed successfully");
     next();
   };
 };

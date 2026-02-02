@@ -19,11 +19,28 @@ const sendResponse = (
 // Sign up a new user
 export const signup = async (req, res) => {
   try {
+    console.log("🔐 AUTH FLOW: Starting SIGNUP process");
+    console.log("📥 Request body:", req.body);
+
     const userData = req.body;
+    console.log("🔄 Calling UserService.createUser with:", {
+      name: userData.name,
+      email: userData.email,
+      // Don't log password for security
+    });
+
     const result = await UserService.createUser(userData);
+    console.log("✅ UserService.createUser completed successfully");
+    console.log("📤 Response data:", {
+      userId: result.user.id,
+      userEmail: result.user.email,
+      userName: result.user.name,
+    });
+
     return sendResponse(res, 201, true, "User registered successfully", result);
   } catch (error) {
-    console.error("Controller - Signup error:", error.message);
+    console.error("❌ AUTH FLOW: Signup error:", error.message);
+    console.error("📋 Error stack:", error.stack);
 
     if (error.message.includes("exists")) {
       return sendResponse(res, 409, false, error.message);
@@ -50,11 +67,26 @@ export const signup = async (req, res) => {
 // Login user
 export const login = async (req, res) => {
   try {
+    console.log("🔐 AUTH FLOW: Starting LOGIN process");
+    console.log("📥 Request body:", req.body);
+
     const { email, password } = req.body;
+    console.log("🔄 Calling UserService.authenticateUser with email:", email);
+
     const result = await UserService.authenticateUser(email, password);
+    console.log("✅ UserService.authenticateUser completed successfully");
+    console.log("📤 Response data:", {
+      userId: result.user.id,
+      userEmail: result.user.email,
+      userName: result.user.name,
+      userTokenCtrl: result.token,
+      tokenGenerated: !!result.token,
+    });
+
     return sendResponse(res, 200, true, "Login successful", result);
   } catch (error) {
-    console.error("Controller - Login error:", error.message);
+    console.error("❌ AUTH FLOW: Login error:", error.message);
+    console.error("📋 Error stack:", error.stack);
 
     if (error.message === "Invalid credentials") {
       return sendResponse(res, 401, false, error.message);

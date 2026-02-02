@@ -8,21 +8,38 @@ import Header from "./compenents/layout/Header";
 import Footer from "./compenents/layout/Footer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-
-
+import ProtectedRoute from "./routes/ProtectedRoute";
+import { useAppSelector } from "./app/hooks";
+import { useGetProfileQuery } from "./features/auth/authApi";
+// import { useGetProfileQuery } from "./features/auth/authApi";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const token = useAppSelector((state) => state.auth.token);
+
+  useGetProfileQuery(undefined, {
+    skip: !token,
+    refetchOnMountOrArgChange: true,
+
+  });
 
   return (
     <div className={`app ${isMenuOpen ? "menu-open" : ""}`}>
       <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/card" element={<Cards />} />
+          {/* PUBLIC ROUTES */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+
+          {/* PROTECTED ROUTES */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/card" element={<Cards />} />
+            <Route path="/home" element={<Home />} />
+          </Route>
+
+          {/* 404 */}
           <Route
             path="*"
             element={
@@ -39,9 +56,6 @@ function App() {
                   borderRadius: "0.5rem",
                   border: "1px solid black",
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                  transform: "translateY(-50%)",
-                  transition: "all 0.3s ease-in-out",
-                  opacity: "0.9",
                 }}
               >
                 404 Not Found

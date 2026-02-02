@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoginMutation } from "../features/auth/authApi.js";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setCredentials } from "../features/auth/authSlice";
 import "../styles/auth.css";
 function Login() {
   const dispatch = useDispatch();
@@ -17,9 +18,12 @@ function Login() {
 
     try {
       const res = await login({ email, password }).unwrap();
-      console.log("Login Success:", res);
+      console.log("Login Success:", res.data.token);
       // Navigate to home or dashboard after successful login
-      navigate("/");
+      dispatch(
+        setCredentials({ user: res?.data?.user, token: res?.data?.token })
+      );
+      navigate("/card");
     } catch (err) {
       console.error("Login Error:", err);
     }

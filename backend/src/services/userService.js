@@ -31,6 +31,13 @@ const generateToken = (userId) => {
 export class UserService {
   // Validate user input data
   static validateUserData(data, isLogin = false) {
+    console.log("🔍 Validating user data:", {
+      isLogin,
+      hasName: !!data.name,
+      hasEmail: !!data.email,
+      hasPassword: !!data.password,
+    });
+
     const errors = [];
 
     if (!isLogin) {
@@ -48,30 +55,51 @@ export class UserService {
     }
 
     if (errors.length > 0) {
+      console.log("❌ Validation failed with errors:", errors);
       throw new Error(errors.join(", "));
     }
+
+    console.log("✅ User data validation passed");
   }
 
   // Create a new user
   static async createUser(userData) {
     try {
+      console.log("👤 UserService: Starting user creation process");
+
       // Validate input
+      console.log("🔍 Step 1: Validating input data");
       this.validateUserData(userData);
 
       // Check if user already exists
+      console.log(
+        "🔍 Step 2: Checking for existing user with email:",
+        userData.email.toLowerCase().trim()
+      );
       const existingUser = await prisma.user.findUnique({
         where: { email: userData.email.toLowerCase().trim() },
       });
 
       if (existingUser) {
+        console.log("❌ User already exists with email:", userData.email);
         throw new Error("User with this email already exists");
       }
+      console.log("✅ No existing user found");
 
       // Hash password
+      console.log("🔒 Step 3: Hashing password");
       const saltRounds = 12;
       const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
+      console.log("✅ Password hashed successfully");
 
       // Create user in database
+      console.log("💾 Step 4: Creating user in database");
+      console.log("📝 User data to create:", {
+        name: userData.name.trim(),
+        email: userData.email.toLowerCase().trim(),
+        // Don't log hashed password
+      });
+
       const user = await prisma.user.create({
         data: {
           name: userData.name.trim(),
@@ -80,12 +108,22 @@ export class UserService {
         },
       });
 
+      console.log("✅ User created successfully in database");
+      console.log("🆔 Generated user ID:", user.id);
+
       // Return user data without token (token generated only on login)
+      const sanitizedUser = sanitizeUser(user);
+      console.log("📤 Returning sanitized user data:", {
+        id: sanitizedUser.id,
+        email: sanitizedUser.email,
+        name: sanitizedUser.name,
+      });
+
       return {
-        user: sanitizeUser(user),
+        user: sanitizedUser,
       };
     } catch (error) {
-      console.error("UserService - Create user error:", error.message);
+      console.error("❌ UserService - Create user error:", error.message);
       throw error;
     }
   }
@@ -93,34 +131,56 @@ export class UserService {
   // Authenticate user for login (this is where token is generated)
   static async authenticateUser(email, password) {
     try {
+      console.log("🔑 UserService: Starting authentication process");
+
       // Validate input
+      console.log("🔍 Step 1: Validating input data");
       this.validateUserData({ email, password }, true);
 
       // Find user by email
+      console.log(
+        "🔍 Step 2: Finding user by email:",
+        email.toLowerCase().trim()
+      );
       const user = await prisma.user.findUnique({
         where: { email: email.toLowerCase().trim() },
       });
 
       if (!user) {
+        console.log("❌ User not found with email:", email);
         throw new Error("Invalid credentials");
       }
+      console.log("✅ User found:", user.id);
 
       // Compare passwords
+      console.log("🔒 Step 3: Comparing passwords");
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValid) {
+        console.log("❌ Invalid password for user:", user.id);
         throw new Error("Invalid credentials");
       }
+      console.log("✅ Password validation successful");
 
       // Generate JWT token (only during login)
+      console.log("🎫 Step 4: Generating JWT token");
       const token = generateToken(user.id);
+      console.log("✅ JWT token generated successfully");
+
+      const sanitizedUser = sanitizeUser(user);
+      console.log("📤 Returning authentication result:", {
+        userId: sanitizedUser.id,
+        userEmail: sanitizedUser.email,
+        tokenLength: token.length,
+        token: token,
+      });
 
       return {
-        user: sanitizeUser(user),
+        user: sanitizedUser,
         token,
       };
     } catch (error) {
-      console.error("UserService - Authenticate user error:", error.message);
+      console.error("❌ UserService - Authenticate user error:", error.message);
       throw error;
     }
   }
