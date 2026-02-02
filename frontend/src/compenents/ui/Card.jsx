@@ -1,7 +1,11 @@
 import "./Card.css";
 import perfumeImg from "../../assets/perfume.jpg";
+import { useAppSelector } from "../../app/hooks";
 
 function Card() {
+  const { user } = useAppSelector((state) => state?.auth);
+  console.log("Card user: ",user )
+  
   return (
     <div className="card">
       <div className="card-image">
@@ -10,15 +14,11 @@ function Card() {
 
       <div className="card-body">
         <h3 className="card-title">
-          Premium perfume for men.
+          Premium perfume for men: {user.name}
         </h3>
 
         <p className="card-desc">
-          This is a sample description for the perfume card. It is long enough
-          to test the text clamping behavior within the card component.
-          The description provides details about the perfume, including its
-          long-lasting quality, good fragrance, and top-notch
-          craftsmanship.
+          {user}
         </p>
       </div>
 

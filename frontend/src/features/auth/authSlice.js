@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { authApi } from "./authApi";
 
+console.log("call initial state");
 const initialState = {
-  user: null,
+  user: localStorage.getItem("user") || null,
   token: localStorage.getItem("token") || null,
   isAuthenticated: Boolean(localStorage.getItem("token")),
 };
+
+console.log("user data from initial state", initialState);
 
 const authSlice = createSlice({
   name: "auth",
@@ -17,6 +20,7 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isAuthenticated = true;
       localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
     },
 
     logout: (state) => {

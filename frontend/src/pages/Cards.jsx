@@ -3,6 +3,7 @@ import CardGrid from "../compenents/sections/CardGrid";
 import "../styles/sections.css";
 
 function Cards() {
+  
   return (
     <>
       <main>
