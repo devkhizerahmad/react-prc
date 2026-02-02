@@ -1,33 +1,44 @@
 import { useState } from "react";
-import { useSignupMutation } from "../../store/api/apiSlice.js";
-import { useDispatch } from "react-redux";
+import {
+  useSignupMutation,
+  useLoginMutation,
+} from "../features/auth/authApi.js";
 
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 function Signup() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [signup, { isLoading, isError, error }] = useSignupMutation();
+  const [login] = useLoginMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting signup form:",name, email, password);
+    console.log("Submitting signup form:", name, email, password);
 
     try {
-      const res = await signup({ name, email, password }).unwrap();
-      console.log("Signup Success:", res);
+      const signupRes = await signup({ name, email, password }).unwrap();
+      console.log("Signup Success:", signupRes);
+
+      // Automatically login the user after successful signup
+      const loginRes = await login({ email, password }).unwrap();
+      console.log("Auto-login Success:", loginRes);
+
       // Reset form
       setName("");
       setEmail("");
       setPassword("");
 
-      // Optionally redirect to login page after successful signup
-      // You can use navigate hook from react-router-dom here
+      // Navigate to home page after successful signup and login
+      navigate("/");
     } catch (err) {
-      console.error("Signup Error:", err);
+      console.error("Signup/Login Error:", err);
     }
   };
 

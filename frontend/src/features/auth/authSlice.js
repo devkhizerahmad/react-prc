@@ -1,6 +1,4 @@
-import { createApi } from "@reduxjs/toolkit/query";
-
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
@@ -28,4 +26,4 @@ const authSlice = createSlice({
 });
 
 export const { setCredentials, logout } = authSlice.actions;
-export default authSlice.reducers;
+export default authSlice.reducer;
