@@ -16,7 +16,7 @@ function Card() {
         <h3 className="card-title">
           Premium perfume for men: {user.name}
         </h3>
-
+updated
         <p className="card-desc">
           {user}
         </p>
