@@ -9,9 +9,10 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* border: 1px solid rgba(255, 255, 255, 0.2); */
   flex: 1 1 auto;
   /* background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); */
+  border : 1px solid linear-gradient(90deg, #38bdf8, #818cf8, #e68a13);
   position: relative;
   z-index: 1;
   backdrop-filter: blur(10px);
