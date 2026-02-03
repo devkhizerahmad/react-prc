@@ -14,7 +14,7 @@ function Card() {
 
       <div className="card-body">
         <h3 className="card-title">
-          Premium perfume for men    adsc: {user.name}
+          Premium perfume for men : {user.name}
         </h3>
 
         <p className="card-desc">
